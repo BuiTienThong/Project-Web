@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const booksController = require('./controllers/books.controllers');
+const bookController = require('./controllers/books.controllers');
 const ApiError = require('./api-error');
 
 const app = express();
@@ -12,16 +12,16 @@ app.get('/', (req, res) => {
     res.json({message:'Welcome to Library.'});
 });
 
-app.route('/api/contacts')
-    .get(booksController.findAll)
-    .post(booksController.create)
-    .delete(booksController.deleteAll);
-app.route('/api/contacts/favorite').get(booksController.findAllFavorite);
+app.route('/api/books')
+    .get(bookController.findAll)
+    .post(bookController.create)
+    .delete(bookController.deleteAll);
+app.route('/api/books/favorite').get(bookController.findAllFavorite);
 
-app.route('/api/contacts/:id(\\d+)')
-    .get(booksController.findOne)
-    .put(booksController.update)
-    .delete(booksController.delete);
+app.route('/api/books/:id(\\d+)')
+    .get(bookController.findOne)
+    .put(bookController.update)
+    .delete(bookController.delete);
 
 
 // Handle 404 response.
